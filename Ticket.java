@@ -11,7 +11,7 @@ public class Ticket {
         //if the number we can add a valid number
         if (!filled && input >=1 && input <= 40 && !numbers.contains(input)) {
             numbers.add(input);
-            printNumbers();
+            //printNumbers();
         }
 
         if (numbers.size() == TICKET_LENGTH) {
@@ -40,29 +40,29 @@ public class Ticket {
         return this.numbers;
     }
 
+    public boolean contains(int num) {
+        return numbers.contains(num);
+    }
+
     //Warnings are suppressed for this section of code because we already know that ticketToMatch.getNumbers() will return an ArrayList of Integers.
     @SuppressWarnings("unchecked")
     public int match(Ticket ticketToMatch) {
+
+        System.out.println("In Matches!");
         int numberOfMatches = 0;
 
         ArrayList<Integer> otherNumbers = ticketToMatch.getNumbers();
+
+        //numbers.size() is equaling zero here!
+        System.out.println("numbers.size() = " + numbers.size());
 
         for (int i = 0; i < numbers.size(); i++) {
             if (otherNumbers.contains(numbers.get(i))) {
                 numberOfMatches++;
             }
-
         }
-        /*
-        for (int i = 0; i < numbers.size(); i++) {
-            for(int j = 0; j < otherNumbers.size(); j++) {
-                if(numbers.get(i).equals(otherNumbers.get(j))) {
-                    numberOfMatches++;
-                }
-            }
 
-        }
-        */
+        System.out.println("Number of Matches: " + numberOfMatches);
         return numberOfMatches;
     }
 }
